@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGNITE GYM | 心臓を燃やせ、血液を回せ</title>
+  <meta name="description" content="IGNITE GYM - あなたの限界を超えるパーソナルジム。心臓を燃やせ、血液を回せ。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="heartbeat-loader">
+      <svg viewBox="0 0 200 80" class="heartbeat-svg">
+        <polyline class="heartbeat-line" points="0,40 40,40 50,40 55,10 60,70 65,25 70,55 75,40 80,40 200,40" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-fire">IGNITE</span><span class="logo-gym">GYM</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about" class="nav-link">ABOUT</a></li>
+        <li><a href="#programs" class="nav-link">PROGRAMS</a></li>
+        <li><a href="#trainers" class="nav-link">TRAINERS</a></li>
+        <li><a href="#results" class="nav-link">RESULTS</a></li>
+        <li><a href="#pricing" class="nav-link">PRICING</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">TRIAL</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-content">
+      <p class="hero-sub animate-in">PERSONAL TRAINING GYM</p>
+      <h1 class="hero-title animate-in">
+        <span class="title-line">心臓を<span class="text-fire">燃やせ</span>、</span>
+        <span class="title-line">血液を<span class="text-blood">回せ</span>。</span>
+      </h1>
+      <p class="hero-desc animate-in">
+        限界の先にある、本当の自分に出会え。<br>
+        全身を駆け巡る熱い血潮が、あなたを変える。
+      </p>
+      <div class="hero-actions animate-in">
+        <a href="#contact" class="btn btn-primary">
+          <span class="btn-pulse"></span>
+          無料体験に申し込む
+        </a>
+        <a href="#about" class="btn btn-outline">もっと知る</a>
+      </div>
+      <div class="hero-stats animate-in">
+        <div class="stat">
+          <span class="stat-number" data-target="2500">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">累計会員数</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-target="98">0</span><span class="stat-suffix">%</span>
+          <span class="stat-label">目標達成率</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-target="15">0</span><span class="stat-suffix">名</span>
+          <span class="stat-label">専属トレーナー</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">ABOUT US</span>
+        <h2 class="section-title">燃える<span class="text-fire">情熱</span>が<br>あなたを変える</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="about-lead">
+            IGNITE GYMは、「心臓を燃やせ、血液を回せ」をコンセプトに、
+            あなたの内に眠る炎を呼び覚ますパーソナルトレーニングジムです。
+          </p>
+          <p>
+            私たちは単なるフィットネスジムではありません。
+            一人ひとりの身体と向き合い、科学的根拠に基づいたトレーニングプログラムで、
+            あなたの限界を押し広げます。心拍数が上がり、全身に血液が巡る瞬間——
+            それこそが、生きている証です。
+          </p>
+          <div class="about-features">
+            <div class="feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
+              <div>
+                <h3>心拍管理トレーニング</h3>
+                <p>リアルタイム心拍モニタリングで最適な負荷を維持</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <div>
+                <h3>完全予約制マンツーマン</h3>
+                <p>あなただけの時間、あなただけのプログラム</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
+              <div>
+                <h3>食事・生活指導</h3>
+                <p>トレーニング以外の時間も徹底サポート</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="about-image-wrapper">
+            <div class="about-image-placeholder">
+              <svg viewBox="0 0 120 120" class="about-icon-svg">
+                <circle cx="60" cy="60" r="55" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                <path d="M60 30 C45 30, 30 45, 30 55 C30 75, 60 95, 60 95 C60 95, 90 75, 90 55 C90 45, 75 30, 60 30Z" fill="currentColor" opacity="0.8"/>
+              </svg>
+              <div class="pulse-ring"></div>
+              <div class="pulse-ring delay-1"></div>
+              <div class="pulse-ring delay-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="programs section" id="programs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">PROGRAMS</span>
+        <h2 class="section-title">あなたの<span class="text-fire">炎</span>に<br>最適なプログラム</h2>
+      </div>
+      <div class="programs-grid">
+        <div class="program-card" data-intensity="high">
+          <div class="program-intensity">
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+          </div>
+          <div class="program-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M24 4 L28 16 L40 16 L30 24 L34 36 L24 28 L14 36 L18 24 L8 16 L20 16Z"/>
+            </svg>
+          </div>
+          <h3 class="program-title">IGNITE BURN</h3>
+          <p class="program-subtitle">脂肪燃焼特化プログラム</p>
+          <p class="program-desc">
+            高強度インターバルトレーニングと有酸素運動を組み合わせ、
+            心拍数を最大限に引き上げ、脂肪を燃やし尽くす。
+          </p>
+          <ul class="program-details">
+            <li>60分 / セッション</li>
+            <li>週2〜3回推奨</li>
+            <li>全レベル対応</li>
+          </ul>
+        </div>
+        <div class="program-card featured" data-intensity="max">
+          <div class="program-badge">MOST POPULAR</div>
+          <div class="program-intensity">
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+          </div>
+          <div class="program-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M24 4 C18 4, 8 12, 8 22 C8 36, 24 44, 24 44 C24 44, 40 36, 40 22 C40 12, 30 4, 24 4Z"/>
+              <path d="M24 18 L26 24 L32 24 L27 28 L29 34 L24 30 L19 34 L21 28 L16 24 L22 24Z"/>
+            </svg>
+          </div>
+          <h3 class="program-title">IGNITE CORE</h3>
+          <p class="program-subtitle">総合ボディメイク</p>
+          <p class="program-desc">
+            筋力トレーニングと心肺機能強化を融合。
+            体の内側から燃え上がる、究極のボディメイクプログラム。
+          </p>
+          <ul class="program-details">
+            <li>75分 / セッション</li>
+            <li>週2〜4回推奨</li>
+            <li>食事指導付き</li>
+          </ul>
+        </div>
+        <div class="program-card" data-intensity="extreme">
+          <div class="program-intensity">
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+            <span class="intensity-dot"></span>
+          </div>
+          <div class="program-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M24 4 L20 18 L6 18 L18 28 L14 42 L24 32 L34 42 L30 28 L42 18 L28 18Z"/>
+              <circle cx="24" cy="24" r="6"/>
+            </svg>
+          </div>
+          <h3 class="program-title">IGNITE BEAST</h3>
+          <p class="program-subtitle">アスリート強化プログラム</p>
+          <p class="program-desc">
+            限界を超えたい者だけが挑める最高強度プログラム。
+            心臓が叫ぶまで追い込み、真の強さを手に入れろ。
+          </p>
+          <ul class="program-details">
+            <li>90分 / セッション</li>
+            <li>週3〜5回推奨</li>
+            <li>フルサポート付き</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trainers Section -->
+  <section class="trainers section" id="trainers">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">TRAINERS</span>
+        <h2 class="section-title"><span class="text-fire">情熱</span>を持つ<br>プロフェッショナル</h2>
+      </div>
+      <div class="trainers-grid">
+        <div class="trainer-card">
+          <div class="trainer-avatar">
+            <div class="avatar-placeholder">
+              <svg viewBox="0 0 80 80" fill="currentColor" opacity="0.6">
+                <circle cx="40" cy="28" r="14"/>
+                <path d="M12 72 C12 52, 24 44, 40 44 C56 44, 68 52, 68 72"/>
+              </svg>
+            </div>
+            <div class="trainer-flame"></div>
+          </div>
+          <h3 class="trainer-name">石岡 大輔</h3>
+          <span class="trainer-role">Head Trainer</span>
+          <p class="trainer-bio">元プロアスリート。15年のトレーニング指導経験を持ち、数々のボディメイクコンテストで入賞者を輩出。</p>
+          <div class="trainer-specialties">
+            <span class="specialty">筋力トレーニング</span>
+            <span class="specialty">コンディショニング</span>
+          </div>
+        </div>
+        <div class="trainer-card">
+          <div class="trainer-avatar">
+            <div class="avatar-placeholder">
+              <svg viewBox="0 0 80 80" fill="currentColor" opacity="0.6">
+                <circle cx="40" cy="28" r="14"/>
+                <path d="M12 72 C12 52, 24 44, 40 44 C56 44, 68 52, 68 72"/>
+              </svg>
+            </div>
+            <div class="trainer-flame"></div>
+          </div>
+          <h3 class="trainer-name">佐藤 美咲</h3>
+          <span class="trainer-role">Senior Trainer</span>
+          <p class="trainer-bio">管理栄養士の資格を持つトレーナー。科学的アプローチで内側から燃える身体を作り上げる。</p>
+          <div class="trainer-specialties">
+            <span class="specialty">食事指導</span>
+            <span class="specialty">ダイエット</span>
+          </div>
+        </div>
+        <div class="trainer-card">
+          <div class="trainer-avatar">
+            <div class="avatar-placeholder">
+              <svg viewBox="0 0 80 80" fill="currentColor" opacity="0.6">
+                <circle cx="40" cy="28" r="14"/>
+                <path d="M12 72 C12 52, 24 44, 40 44 C56 44, 68 52, 68 72"/>
+              </svg>
+            </div>
+            <div class="trainer-flame"></div>
+          </div>
+          <h3 class="trainer-name">田中 隼人</h3>
+          <span class="trainer-role">Performance Coach</span>
+          <p class="trainer-bio">スポーツ科学修士。心拍ゾーントレーニングのスペシャリスト。限界を科学で押し広げる。</p>
+          <div class="trainer-specialties">
+            <span class="specialty">HIIT</span>
+            <span class="specialty">心肺機能強化</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results section" id="results">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">RESULTS</span>
+        <h2 class="section-title"><span class="text-fire">燃えた</span>先にある<br>変化の証明</h2>
+      </div>
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-before-after">
+            <div class="result-metric">
+              <span class="metric-value">-18kg</span>
+              <span class="metric-period">3ヶ月</span>
+            </div>
+          </div>
+          <div class="result-info">
+            <div class="result-stars">
+              <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+            </div>
+            <p class="result-quote">"心臓がバクバクする感覚が、いつしか快感に変わった。人生で一番自分を好きになれた。"</p>
+            <div class="result-author">
+              <span class="author-name">K.M さん</span>
+              <span class="author-detail">30代女性 / IGNITE COREコース</span>
+            </div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-before-after">
+            <div class="result-metric">
+              <span class="metric-value">-25kg</span>
+              <span class="metric-period">5ヶ月</span>
+            </div>
+          </div>
+          <div class="result-info">
+            <div class="result-stars">
+              <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+            </div>
+            <p class="result-quote">"『血液を回せ』という言葉が、毎回のトレーニングで実感できた。身体が変わると人生が変わる。"</p>
+            <div class="result-author">
+              <span class="author-name">T.S さん</span>
+              <span class="author-detail">40代男性 / IGNITE BURNコース</span>
+            </div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-before-after">
+            <div class="result-metric">
+              <span class="metric-value">+12kg</span>
+              <span class="metric-period">6ヶ月</span>
+            </div>
+          </div>
+          <div class="result-info">
+            <div class="result-stars">
+              <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+            </div>
+            <p class="result-quote">"ガリガリだった体が、燃えるような情熱で筋肉に変わった。トレーナーの本気が伝わるジムだ。"</p>
+            <div class="result-author">
+              <span class="author-name">R.Y さん</span>
+              <span class="author-detail">20代男性 / IGNITE BEASTコース</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">PRICING</span>
+        <h2 class="section-title">自分への<span class="text-fire">投資</span>を<br>始めよう</h2>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-header">
+            <h3 class="price-name">IGNITE BURN</h3>
+            <p class="price-tagline">脂肪燃焼特化</p>
+          </div>
+          <div class="price-amount">
+            <span class="price-yen">&yen;</span>
+            <span class="price-value">39,800</span>
+            <span class="price-period">/ 月</span>
+          </div>
+          <ul class="price-features">
+            <li>月8回のパーソナルセッション</li>
+            <li>60分 / 回</li>
+            <li>心拍モニタリング</li>
+            <li>月次カウンセリング</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline btn-full">プランを選択</a>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">RECOMMENDED</div>
+          <div class="price-header">
+            <h3 class="price-name">IGNITE CORE</h3>
+            <p class="price-tagline">総合ボディメイク</p>
+          </div>
+          <div class="price-amount">
+            <span class="price-yen">&yen;</span>
+            <span class="price-value">59,800</span>
+            <span class="price-period">/ 月</span>
+          </div>
+          <ul class="price-features">
+            <li>月12回のパーソナルセッション</li>
+            <li>75分 / 回</li>
+            <li>心拍モニタリング</li>
+            <li>食事指導・栄養管理</li>
+            <li>週次カウンセリング</li>
+            <li>LINEサポート無制限</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-full">プランを選択</a>
+        </div>
+        <div class="price-card">
+          <div class="price-header">
+            <h3 class="price-name">IGNITE BEAST</h3>
+            <p class="price-tagline">アスリート強化</p>
+          </div>
+          <div class="price-amount">
+            <span class="price-yen">&yen;</span>
+            <span class="price-value">89,800</span>
+            <span class="price-period">/ 月</span>
+          </div>
+          <ul class="price-features">
+            <li>月20回のパーソナルセッション</li>
+            <li>90分 / 回</li>
+            <li>心拍モニタリング</li>
+            <li>食事指導・栄養管理</li>
+            <li>毎日カウンセリング可</li>
+            <li>LINEサポート無制限</li>
+            <li>サプリメント提供</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline btn-full">プランを選択</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="cta">
+    <div class="cta-bg-effect"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">お前の心臓は、<br>まだ<span class="text-fire">燃えて</span>いるか。</h2>
+        <p class="cta-desc">
+          最初の一歩を踏み出す勇気が、すべてを変える。<br>
+          無料体験で、あなたの中の炎を確かめろ。
+        </p>
+        <a href="#contact" class="btn btn-primary btn-lg">
+          <span class="btn-pulse"></span>
+          無料体験を予約する
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">CONTACT</span>
+        <h2 class="section-title"><span class="text-fire">炎</span>を灯す<br>第一歩</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="info-item">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <h4>アクセス</h4>
+              <p>東京都渋谷区神宮前1-2-3<br>IGNITE Building 3F</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <div>
+              <h4>営業時間</h4>
+              <p>平日 7:00 - 23:00<br>土日祝 8:00 - 21:00</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>お電話</h4>
+              <p>03-XXXX-XXXX</p>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <input type="text" id="name" name="name" required placeholder=" ">
+            <label for="name">お名前</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" required placeholder=" ">
+            <label for="email">メールアドレス</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="phone" name="phone" placeholder=" ">
+            <label for="phone">電話番号</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <select id="program" name="program" required>
+              <option value="" disabled selected></option>
+              <option value="burn">IGNITE BURN</option>
+              <option value="core">IGNITE CORE</option>
+              <option value="beast">IGNITE BEAST</option>
+              <option value="trial">無料体験</option>
+            </select>
+            <label for="program">ご希望のプログラム</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <textarea id="message" name="message" rows="4" placeholder=" "></textarea>
+            <label for="message">メッセージ</label>
+            <div class="form-line"></div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <span class="btn-pulse"></span>
+            送信する
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo">
+            <span class="logo-fire">IGNITE</span><span class="logo-gym">GYM</span>
+          </a>
+          <p class="footer-tagline">心臓を燃やせ、血液を回せ。</p>
+        </div>
+        <div class="footer-links">
+          <h4>MENU</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#trainers">Trainers</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>INFO</h4>
+          <ul>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">特定商取引法に基づく表記</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>FOLLOW US</h4>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 IGNITE GYM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
