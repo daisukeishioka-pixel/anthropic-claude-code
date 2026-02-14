@@ -20,8 +20,8 @@
   --btn-primary-hover: greenyellow;
   --btn-outline-bg: rgba(255, 255, 255, 0.096);
   --btn-outline-hover: rgba(128, 128, 128, 0.379);
-  --font-heading: 'Manrope', sans-serif;
-  --font-body: 'Poppins', sans-serif;
+  --font-heading: 'Manrope', 'Noto Sans JP', sans-serif;
+  --font-body: 'Noto Sans JP', 'Poppins', sans-serif;
 }
 
 /* --- Reset & Base --- */
@@ -79,9 +79,9 @@ img {
 .section-description {
   font-size: 0.9rem;
   opacity: 0.5;
-  line-height: 1.8;
+  line-height: 2;
   text-align: center;
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto 60px;
 }
 
@@ -154,12 +154,13 @@ img {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 20px;
 }
 
 .nav-link {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 400;
+  white-space: nowrap;
   color: var(--text-primary);
   opacity: 0.8;
   transition: opacity 0.3s ease;
@@ -249,17 +250,17 @@ img {
 
 .hero-heading {
   font-family: var(--font-heading);
-  font-size: 3.5rem;
-  font-weight: 500;
-  line-height: 1.2;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.35;
   margin-bottom: 28px;
 }
 
 .hero-description {
   font-size: 0.9rem;
   opacity: 0.5;
-  line-height: 1.8;
-  max-width: 600px;
+  line-height: 2;
+  max-width: 640px;
   margin: 0 auto 40px;
 }
 
@@ -293,10 +294,12 @@ img {
 }
 
 .prompt-card-text {
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.85rem;
+  line-height: 1.7;
   margin-bottom: 16px;
   opacity: 0.8;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .prompt-card-footer {
@@ -470,16 +473,16 @@ img {
 
 .audio-card-heading {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 20px;
-  line-height: 1.3;
+  line-height: 1.5;
 }
 
 .audio-card-text {
   font-size: 0.85rem;
   opacity: 0.5;
-  line-height: 1.8;
+  line-height: 1.9;
   margin-bottom: 12px;
 }
 
@@ -491,13 +494,14 @@ img {
 }
 
 .audio-tag {
-  padding: 8px 18px;
+  padding: 8px 16px;
   border: 1px solid var(--border-color);
   border-radius: 50px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   opacity: 0.7;
   background: transparent;
   transition: opacity 0.3s ease;
+  white-space: nowrap;
 }
 
 .audio-tag:hover {
@@ -539,9 +543,9 @@ img {
 
 .features-heading {
   font-family: var(--font-heading);
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.5;
   opacity: 0.5;
 }
 
@@ -571,15 +575,16 @@ img {
 
 .feature-title {
   font-family: var(--font-body);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 12px;
+  white-space: nowrap;
 }
 
 .feature-description {
   font-size: 0.85rem;
   color: var(--text-disabled);
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 /* ============================================
@@ -643,12 +648,13 @@ img {
 
 .cta-heading {
   font-family: var(--font-heading);
-  font-size: 2.2rem;
-  font-weight: 300;
-  line-height: 1.4;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1.6;
   margin-bottom: 32px;
   position: relative;
   z-index: 1;
+  max-width: 600px;
 }
 
 /* ============================================
@@ -685,8 +691,7 @@ img {
 }
 
 .footer-label {
-  font-size: 0.6rem;
-  text-transform: uppercase;
+  font-size: 0.65rem;
   opacity: 0.5;
   margin-bottom: 20px;
   letter-spacing: 1px;
@@ -783,11 +788,11 @@ img {
   }
 
   .hero-heading {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
   }
 
   .section-heading {
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 
   .prompt-grid {
@@ -796,6 +801,14 @@ img {
 
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .features-heading {
+    font-size: 2rem;
+  }
+
+  .cta-heading {
+    font-size: 1.5rem;
   }
 
   .prompt-ui-mockup {
@@ -839,7 +852,7 @@ img {
 
   /* Hero */
   .hero-heading {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 
   .hero-description {
@@ -852,7 +865,7 @@ img {
   }
 
   .section-heading {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 
   .section-description {
@@ -888,16 +901,20 @@ img {
 
   /* Features */
   .features-heading {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 
   .features-grid {
     grid-template-columns: 1fr;
   }
 
+  .feature-title {
+    white-space: normal;
+  }
+
   /* CTA */
   .cta-heading {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .cta-box {
@@ -924,7 +941,11 @@ img {
   }
 
   .hero-heading {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+  }
+
+  .section-heading {
+    font-size: 1.3rem;
   }
 
   .hero-buttons {
@@ -943,5 +964,13 @@ img {
 
   .gallery-item-large {
     grid-column: auto;
+  }
+
+  .cta-heading {
+    font-size: 1.1rem;
+  }
+
+  .features-heading {
+    font-size: 1.2rem;
   }
 }
