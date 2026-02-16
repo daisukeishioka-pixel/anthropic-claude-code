@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESIST 北浦和店 サイト改善レポート</title>
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --accent: #e94560;
+      --accent-light: #ff6b81;
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #2d3436;
+      --text-light: #636e72;
+      --border: #dfe6e9;
+      --severity-high: #d63031;
+      --severity-high-bg: #ffeaa7;
+      --severity-mid: #e17055;
+      --severity-mid-bg: #ffeaa7;
+      --severity-low: #00b894;
+      --severity-low-bg: #dfe6e9;
+      --seo-color: #0984e3;
+      --design-color: #6c5ce7;
+      --security-color: #d63031;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* ── Header ── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+    }
+    .hero h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: .04em; }
+    .hero .subtitle {
+      margin-top: .6rem;
+      font-size: .95rem;
+      color: rgba(255,255,255,.7);
+    }
+    .hero .meta-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.2rem;
+      font-size: .85rem;
+      color: rgba(255,255,255,.55);
+    }
+
+    /* ── Score Cards ── */
+    .scores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      max-width: 1100px;
+      margin: -2rem auto 2rem;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .score-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08);
+      text-align: center;
+      border-top: 4px solid var(--border);
+    }
+    .score-card.seo    { border-top-color: var(--seo-color); }
+    .score-card.design { border-top-color: var(--design-color); }
+    .score-card.security { border-top-color: var(--security-color); }
+    .score-card .label {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text-light);
+      margin-bottom: .5rem;
+    }
+    .score-card .big-num {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .score-card.seo .big-num      { color: var(--seo-color); }
+    .score-card.design .big-num   { color: var(--design-color); }
+    .score-card.security .big-num { color: var(--security-color); }
+    .score-card .detail {
+      font-size: .78rem;
+      color: var(--text-light);
+      margin-top: .4rem;
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    /* ── Executive Summary ── */
+    .exec-summary {
+      background: linear-gradient(135deg, #fff9c4 0%, #fff3e0 100%);
+      border-left: 5px solid #f39c12;
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .exec-summary h2 {
+      font-size: 1.1rem;
+      color: #e67e22;
+      margin-bottom: .6rem;
+    }
+    .exec-summary p {
+      font-size: .92rem;
+      color: #5d4037;
+    }
+    .exec-summary ul {
+      margin: .6rem 0 0 1.2rem;
+      font-size: .9rem;
+      color: #5d4037;
+    }
+
+    /* ── Section ── */
+    section { margin-bottom: 2.5rem; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: .6rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-header .icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .section-header .icon.seo      { background: var(--seo-color); }
+    .section-header .icon.design   { background: var(--design-color); }
+    .section-header .icon.security { background: var(--security-color); }
+    .section-header h2 { font-size: 1.3rem; font-weight: 700; }
+
+    /* ── Issue Card ── */
+    .issue {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,.04);
+      border-left: 4px solid var(--border);
+    }
+    .issue.high   { border-left-color: var(--severity-high); }
+    .issue.mid    { border-left-color: var(--severity-mid); }
+    .issue.low    { border-left-color: var(--severity-low); }
+
+    .issue-head {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: .6rem;
+      flex-wrap: wrap;
+    }
+    .severity {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: .15rem .6rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .severity.high { background: #ffeaea; color: var(--severity-high); }
+    .severity.mid  { background: #fff0e6; color: var(--severity-mid); }
+    .severity.low  { background: #e6fff7; color: var(--severity-low); }
+    .issue-head h3 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .issue-body {
+      font-size: .88rem;
+      color: var(--text-light);
+    }
+    .issue-body p { margin-bottom: .5rem; }
+    .issue-body strong { color: var(--text); }
+
+    .recommendation {
+      background: #f0f7ff;
+      border-radius: 6px;
+      padding: .8rem 1rem;
+      margin-top: .8rem;
+      font-size: .85rem;
+    }
+    .recommendation.design-rec { background: #f3f0ff; }
+    .recommendation.security-rec { background: #fff0f0; }
+    .recommendation-label {
+      font-weight: 700;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .3rem;
+    }
+    .recommendation.seo-rec .recommendation-label { color: var(--seo-color); }
+    .recommendation.design-rec .recommendation-label { color: var(--design-color); }
+    .recommendation.security-rec .recommendation-label { color: var(--security-color); }
+
+    pre {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: .8rem;
+      margin-top: .5rem;
+      line-height: 1.6;
+    }
+
+    /* ── Priority Table ── */
+    .priority-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      font-size: .88rem;
+      margin-top: 1rem;
+    }
+    .priority-table thead th {
+      background: var(--primary);
+      color: #fff;
+      padding: .8rem 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    .priority-table tbody td {
+      padding: .7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+    .priority-table tbody tr:last-child td { border-bottom: none; }
+    .cat-badge {
+      display: inline-block;
+      font-size: .7rem;
+      padding: .1rem .5rem;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    .cat-badge.seo      { background: #e3f2fd; color: var(--seo-color); }
+    .cat-badge.design   { background: #ede7f6; color: var(--design-color); }
+    .cat-badge.security { background: #ffebee; color: var(--security-color); }
+
+    /* ── Footer ── */
+    .report-footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.3rem; }
+      .hero .meta-row { flex-direction: column; gap: .3rem; }
+      .scores { grid-template-columns: 1fr; margin-top: -1.5rem; }
+      .issue { padding: 1rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     HEADER
+     ══════════════════════════════════════════════ -->
+<header class="hero">
+  <h1>RESIST 北浦和店 サイト改善レポート</h1>
+  <p class="subtitle">https://resist-official.com/kitaurawa</p>
+  <div class="meta-row">
+    <span>分析日: 2026年2月16日</span>
+    <span>分析: Claude Code Agent Teams</span>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     SCORE CARDS
+     ══════════════════════════════════════════════ -->
+<div class="scores">
+  <div class="score-card seo">
+    <div class="label">SEO</div>
+    <div class="big-num">9 件</div>
+    <div class="detail">高 5 / 中 3 / 低 1</div>
+  </div>
+  <div class="score-card design">
+    <div class="label">デザイン・UI</div>
+    <div class="big-num">10 件</div>
+    <div class="detail">高 5 / 中 4 / 低 1</div>
+  </div>
+  <div class="score-card security">
+    <div class="label">セキュリティ</div>
+    <div class="big-num">9 件</div>
+    <div class="detail">高 4 / 中 4 / 低 1</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════
+     EXECUTIVE SUMMARY
+     ══════════════════════════════════════════════ -->
+<div class="exec-summary">
+  <h2>エグゼクティブサマリー</h2>
+  <p>本レポートは、パーソナルジム＆ピラティス RESIST 北浦和店の公式サイトを SEO・デザイン/UI・セキュリティの 3 観点から分析した結果です。</p>
+  <ul>
+    <li><strong>最重要課題</strong>: サイトが Google にほぼインデックスされていない可能性が極めて高い（<code>site:resist-official.com</code> の検索結果がゼロ）。クローラーへの 403 ブロックが原因と推定。</li>
+    <li><strong>SEO</strong>: 構造化データ（JSON-LD）未実装、OGP タグ未設定、sitemap.xml 未検出など基礎的な最適化が不足。</li>
+    <li><strong>デザイン・UI</strong>: CTA（無料体験予約ボタン）の訴求力向上、ブランド名の表記統一、料金情報の可視化改善が必要。</li>
+    <li><strong>セキュリティ</strong>: セキュリティヘッダー（CSP, HSTS, X-Frame-Options 等）の設定が不十分と推定。早急な対応が求められる。</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SEO SECTION
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-header">
+    <div class="icon seo">S</div>
+    <h2>SEO の課題点</h2>
+  </div>
+
+  <!-- Issue 1 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>Googlebot のクロールブロック</h3>
+    </div>
+    <div class="issue-body">
+      <p><code>site:resist-official.com</code> の検索結果がゼロであり、<strong>Googlebot が 403 エラーでブロックされている可能性が極めて高い</strong>。WAF・CDN・サーバー設定でクローラーを遮断していると推定される。</p>
+      <p>これが解消されない限り、他の SEO 施策は全て無効。</p>
+      <div class="recommendation seo-rec">
+        <div class="recommendation-label">推奨対策</div>
+        WAF / CDN の設定を見直し、Googlebot・Bingbot 等の主要検索エンジンクローラーの User-Agent を許可リストに追加する。Google Search Console で「URL 検査」を実施して正常にクロールできるか確認する。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 2 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>sitemap.xml / robots.txt の未検出</h3>
+    </div>
+    <div class="issue-body">
+      <p>robots.txt および sitemap.xml のいずれも 403 エラーを返しており、検索エンジンがサイト構造を把握できない状態。</p>
+      <div class="recommendation seo-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <pre>// robots.txt
+User-agent: *
+Allow: /
+Sitemap: https://resist-official.com/sitemap.xml</pre>
+        <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://resist-official.com/&lt;/loc&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://resist-official.com/kitaurawa&lt;/loc&gt;
+    &lt;priority&gt;0.9&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://resist-official.com/nishishinjuku&lt;/loc&gt;
+    &lt;priority&gt;0.9&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 3 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>構造化データ（JSON-LD）未実装</h3>
+    </div>
+    <div class="issue-body">
+      <p>Google 検索結果にリッチスニペット（営業時間・評価・料金等）が表示されておらず、LocalBusiness / HealthClub スキーマが<strong>未実装</strong>と推定される。競合他社が実装済みの場合、検索結果での訴求力で大きく劣る。</p>
+      <div class="recommendation seo-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <pre>{
+  "@context": "https://schema.org",
+  "@type": "HealthClub",
+  "name": "パーソナルジム＆ピラティス RESIST 北浦和店",
+  "url": "https://resist-official.com/kitaurawa",
+  "telephone": "XXX-XXXX-XXXX",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "北浦和1-2-15 森ビル2階",
+    "addressLocality": "さいたま市浦和区",
+    "addressRegion": "埼玉県",
+    "postalCode": "330-0074",
+    "addressCountry": "JP"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday",
+      "Thursday","Friday","Saturday","Sunday"],
+    "opens": "08:00",
+    "closes": "22:00"
+  }]
+}</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 4 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>OGP タグの設定不備</h3>
+    </div>
+    <div class="issue-body">
+      <p>SNS シェア時の表示（タイトル・説明・画像）が最適化されていない可能性が高い。パーソナルジムは Instagram 等の SNS 流入が重要であり、OGP 未設定は機会損失に直結する。</p>
+      <div class="recommendation seo-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <pre>&lt;meta property="og:title"
+      content="北浦和の通い放題パーソナルジム＆ピラティス RESIST" /&gt;
+&lt;meta property="og:description"
+      content="JR北浦和駅東口徒歩4分。完全個室で筋トレ・ピラティス・ストレッチが通い放題。" /&gt;
+&lt;meta property="og:image"
+      content="https://resist-official.com/images/ogp-kitaurawa.jpg" /&gt;
+&lt;meta property="og:url"
+      content="https://resist-official.com/kitaurawa" /&gt;
+&lt;meta name="twitter:card" content="summary_large_image" /&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 5 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>canonical URL / 見出し構造の確認不足</h3>
+    </div>
+    <div class="issue-body">
+      <p><code>/kitaurawa</code> と <code>/kitaurawa/</code> で重複コンテンツが発生している可能性がある。また h1 タグの適切な設定および h2-h3 の論理的なネスト構造が不明。</p>
+      <div class="recommendation seo-rec">
+        <div class="recommendation-label">推奨対策</div>
+        canonical タグを設定し、末尾スラッシュの有無を 301 リダイレクトで統一する。h1 はページに 1 つだけ設置し、ターゲットキーワード「北浦和 パーソナルジム」を含める。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 6 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>meta description の CTA 不足</h3>
+    </div>
+    <div class="issue-body">
+      <p>検索結果で表示される説明文に「無料体験予約受付中」等の行動喚起が含まれておらず、CTR（クリック率）を下げている可能性がある。</p>
+      <div class="recommendation seo-rec">
+        <div class="recommendation-label">推奨対策</div>
+        meta description に CTA を追加: 「JR北浦和駅東口徒歩4分。完全個室で通い放題のパーソナルジム＆ピラティス。<strong>無料体験予約受付中。</strong>」
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 7 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>画像最適化（alt 属性・WebP・lazy loading）</h3>
+    </div>
+    <div class="issue-body">
+      <p>施設写真・トレーナー写真等の画像に適切な alt 属性が設定されているか不明。WebP/AVIF 等の次世代フォーマット未使用、width/height 属性の未指定は CLS 悪化の原因になる。</p>
+      <div class="recommendation seo-rec">
+        <div class="recommendation-label">推奨対策</div>
+        全画像に説明的な alt テキストを設定。ファーストビュー外の画像には <code>loading="lazy"</code> を付与。WebP への変換を検討。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 8 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>Google ビジネスプロフィール連携</h3>
+    </div>
+    <div class="issue-body">
+      <p>Google マップ経由の集客は地域密着型ジムの生命線だが、Google ビジネスプロフィールの最適化状況が不明。口コミ管理・写真充実・正確な情報登録が必要。</p>
+    </div>
+  </div>
+
+  <!-- Issue 9 -->
+  <div class="issue low">
+    <div class="issue-head">
+      <span class="severity low">低</span>
+      <h3>title タグの構造改善</h3>
+    </div>
+    <div class="issue-body">
+      <p>現状のタイトル「北浦和店｜通い放題のパーソナルジム&ピラティスRESIST｜1回30分・手ぶらOK」はパイプ区切りが多く冗長。全角・半角「＆」&「&」の混在もある。</p>
+      <div class="recommendation seo-rec">
+        <div class="recommendation-label">推奨対策</div>
+        例: <code>北浦和の通い放題パーソナルジム＆ピラティス | RESIST（レジスト）</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     DESIGN / UI SECTION
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-header">
+    <div class="icon design">D</div>
+    <h2>デザイン・UI の課題点</h2>
+  </div>
+
+  <!-- Issue 1 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>CTA（無料体験予約）ボタンの訴求力不足</h3>
+    </div>
+    <div class="issue-body">
+      <p>「無料体験」が主要 CTA だが、ファーストビュー内での目立ち度やスクロール追従型フローティングボタンの有無が不明。体験料 0 円・所要 60 分の訴求が弱い可能性がある。</p>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <ul>
+          <li>ファーストビュー内に大きな「無料体験を予約する」ボタンを配置</li>
+          <li>スクロールに追従するフローティング CTA を実装</li>
+          <li>「無料」「60分」「手ぶらOK」のマイクロコピーを添える</li>
+          <li>料金セクション後・口コミ後・ページ最下部の複数箇所に CTA を配置</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 2 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>外部予約サイト（Coubic）への遷移 UX</h3>
+    </div>
+    <div class="issue-body">
+      <p>予約は Coubic（coubic.com）に遷移する設計と推測される。外部サイトへの遷移はユーザーの離脱を招きやすく、デザインの一貫性も損なわれる。</p>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        外部サイトへの遷移を明示する。可能であれば公式サイト内に予約フォームを組み込む。遷移先の Coubic ページとデザインの一貫性を保つ。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 3 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>料金情報の透明性と可読性</h3>
+    </div>
+    <div class="issue-body">
+      <p>第三者サイトでは詳細な料金（30分通い放題: 49,800円/月、60分通い放題: 99,600円/月 等）が掲載されているが、公式サイト上での料金表の構造化・見やすさが不明。</p>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <ul>
+          <li>比較表形式で料金プランを整理して表示</li>
+          <li>「1回あたり約1,600円から」のような単価表示で割安感を訴求</li>
+          <li>入会金・解約条件・繰り越し制度等の詳細を明記</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 4 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>営業時間・アクセス情報の充実</h3>
+    </div>
+    <div class="issue-body">
+      <p>Coubic では「月〜金 08:00-22:00」とあるが、土日の営業情報が不明。住所「森ビル2階」は目立ちにくい場所のため、道順案内が重要。</p>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <ul>
+          <li>Google Maps 埋め込みの実装</li>
+          <li>駅からの道順を写真付きで紹介するセクション追加</li>
+          <li>ビル外観写真と入口案内の掲載</li>
+          <li>土日祝日の営業状況を明確に表示</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 5 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>JavaScript レンダリング依存の可能性</h3>
+    </div>
+    <div class="issue-body">
+      <p>検索エンジンが meta description を正しく取得できないケースがあることから、コンテンツが JavaScript（SPA/CSR）で動的に生成されている可能性がある。これはファーストビュー表示速度にも影響する。</p>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        SSR（サーバーサイドレンダリング）または SSG（静的サイト生成）の導入を検討。ファーストビューに必要な CSS のインライン化。Core Web Vitals（LCP, FID, CLS）の最適化。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 6 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>ブランド名の表記揺れ</h3>
+    </div>
+    <div class="issue-body">
+      <p>プラットフォーム間でブランド名が統一されていない。</p>
+      <ul>
+        <li>公式サイト: 「パーソナルジム<strong>&amp;</strong>ピラティスRESIST」</li>
+        <li>Coubic: 「通い放題パーソナルジム<strong>＆</strong>ピラティス RESIST」</li>
+        <li>Instagram: 「パーソナルジム&amp;<strong>マシン</strong>ピラティスRESIST」</li>
+      </ul>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        ブランドスタイルガイドを策定し、正式名称を 1 つに統一。全プラットフォームで使用。「ピラティス」と「マシンピラティス」の使い分けも明確化する。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 7 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>LINE 公式アカウントへの導線不足</h3>
+    </div>
+    <div class="issue-body">
+      <p>Instagram 情報によると「悩んだ時は LINE でいつでも相談可能」とあるが、公式サイト上での LINE への導線が不明確。</p>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        フローティング LINE アイコンの追加、ページ内に「LINE で無料相談」ボタンを目立つ位置に配置。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 8 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>アクセシビリティの検証不足</h3>
+    </div>
+    <div class="issue-body">
+      <p>WCAG 2.1 AA 準拠のコントラスト比、ARIA ラベル、キーボードナビゲーション、フォーカスインジケーターの対応状況が不明。</p>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        axe DevTools や WAVE 等のアクセシビリティチェックツールで検証。特にヒーロー画像上のテキスト可読性、タップターゲットサイズ（44px 以上）を確認。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 9 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>口コミ・社会的証明の活用</h3>
+    </div>
+    <div class="issue-body">
+      <p>Coubic や比較サイトに好評な口コミが多数存在するが、公式サイト内での「お客様の声」セクションの充実度が不明。</p>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        具体的な成果（ビフォーアフター、体験談）を許可を得て掲載。Google 口コミへの誘導も実施。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 10 -->
+  <div class="issue low">
+    <div class="issue-head">
+      <span class="severity low">低</span>
+      <h3>差別化ポイントの明確化</h3>
+    </div>
+    <div class="issue-body">
+      <p>北浦和エリアには競合（かたぎり塾、ボクノジム、BRLab 等）が多数存在。「筋トレ × ピラティス × ストレッチが選べる通い放題」という独自性をファーストビューで十分に打ち出しているか不明。</p>
+      <div class="recommendation design-rec">
+        <div class="recommendation-label">推奨対策</div>
+        差別化ポイント（通い放題・完全個室・回数繰り越し無期限）をアイコン付きで視覚的に強調。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECURITY SECTION
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-header">
+    <div class="icon security">!</div>
+    <h2>セキュリティの課題点</h2>
+  </div>
+
+  <!-- Issue 1 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>セキュリティヘッダーの未設定</h3>
+    </div>
+    <div class="issue-body">
+      <p>以下の重要なセキュリティヘッダーが未設定と推定される。中小事業者のサイトでは設定が見落とされやすい領域だが、攻撃の起点になりやすい。</p>
+      <table style="width:100%;font-size:.85rem;border-collapse:collapse;margin:.6rem 0">
+        <tr style="background:#f5f5f5"><th style="padding:.4rem .6rem;text-align:left;border-bottom:1px solid #ddd">ヘッダー</th><th style="padding:.4rem .6rem;text-align:left;border-bottom:1px solid #ddd">推定状態</th><th style="padding:.4rem .6rem;text-align:left;border-bottom:1px solid #ddd">深刻度</th></tr>
+        <tr><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">Content-Security-Policy</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">未設定</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee;color:var(--severity-high)">高</td></tr>
+        <tr><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">Strict-Transport-Security</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">未設定</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee;color:var(--severity-high)">高</td></tr>
+        <tr><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">X-Frame-Options</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">未設定</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee;color:var(--severity-high)">高</td></tr>
+        <tr><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">X-Content-Type-Options</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">未設定</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee;color:var(--severity-mid)">中</td></tr>
+        <tr><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">Referrer-Policy</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee">未設定</td><td style="padding:.4rem .6rem;border-bottom:1px solid #eee;color:var(--severity-mid)">中</td></tr>
+        <tr><td style="padding:.4rem .6rem">Permissions-Policy</td><td style="padding:.4rem .6rem">未設定</td><td style="padding:.4rem .6rem;color:var(--severity-low)">低</td></tr>
+      </table>
+      <div class="recommendation security-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <pre>Strict-Transport-Security: max-age=31536000; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()</pre>
+        まず <a href="https://securityheaders.com" target="_blank" rel="noopener">SecurityHeaders.com</a> で現状を診断すること。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 2 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>Content Security Policy（CSP）未設定</h3>
+    </div>
+    <div class="issue-body">
+      <p>CSP が未設定の場合、XSS（クロスサイトスクリプティング）攻撃やデータインジェクションに対して無防備な状態になる。特にサードパーティスクリプト（Coubic, Google Analytics 等）を多用するサイトでは必須。</p>
+      <div class="recommendation security-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <pre>Content-Security-Policy:
+  default-src 'self';
+  script-src 'self' https://www.googletagmanager.com
+    https://www.google-analytics.com https://coubic.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' data: https:;
+  font-src 'self' https://fonts.gstatic.com;
+  frame-src https://coubic.com https://www.google.com;
+  frame-ancestors 'none';
+  upgrade-insecure-requests;</pre>
+        まず <code>Content-Security-Policy-Report-Only</code> でテスト導入し、段階的に強化する。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 3 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>クリックジャッキング保護の欠如</h3>
+    </div>
+    <div class="issue-body">
+      <p><code>X-Frame-Options</code> および CSP の <code>frame-ancestors</code> が未設定の場合、攻撃者がサイトを iframe に埋め込み、ユーザーの操作を騙すクリックジャッキング攻撃が可能になる。予約フォームへの不正操作リスクがある。</p>
+      <div class="recommendation security-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <code>X-Frame-Options: DENY</code> と CSP <code>frame-ancestors 'none'</code> を設定。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 4 -->
+  <div class="issue high">
+    <div class="issue-head">
+      <span class="severity high">高</span>
+      <h3>SSL/TLS 設定の詳細検証が必要</h3>
+    </div>
+    <div class="issue-body">
+      <p>HTTPS の使用は確認できたが、TLS バージョン（1.0/1.1 の無効化）、暗号スイートの安全性、Mixed Content の有無は未検証。</p>
+      <div class="recommendation security-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <a href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener">Qualys SSL Labs</a> で完全テストを実施。TLS 1.2 以上のみサポート、脆弱な暗号スイートの無効化を行う。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 5 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>サードパーティスクリプトの SRI 未設定</h3>
+    </div>
+    <div class="issue-body">
+      <p>Coubic 予約ウィジェット、Google Analytics、Google Fonts 等の外部スクリプトに Subresource Integrity（SRI）が設定されていない可能性が高い。CDN 侵害時のリスクがある。</p>
+      <div class="recommendation security-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <pre>&lt;script src="https://example.com/script.js"
+  integrity="sha384-[ハッシュ値]"
+  crossorigin="anonymous"&gt;&lt;/script&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 6 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>Cookie セキュリティ属性の確認</h3>
+    </div>
+    <div class="issue-body">
+      <p>アクセス解析やマーケティングツールが設定する Cookie に <code>Secure</code>、<code>HttpOnly</code>、<code>SameSite</code> 属性が適切に設定されているか不明。</p>
+      <div class="recommendation security-rec">
+        <div class="recommendation-label">推奨対策</div>
+        ブラウザ開発者ツールの Application タブで全 Cookie を確認し、最低限 <code>Secure; HttpOnly; SameSite=Lax</code> を設定する。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 7 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>情報漏洩リスク（サーバーバージョン等）</h3>
+    </div>
+    <div class="issue-body">
+      <p><code>Server</code> ヘッダー、<code>X-Powered-By</code> ヘッダー、HTML コメントに開発環境や技術スタックの情報が露出している可能性がある。</p>
+      <div class="recommendation security-rec">
+        <div class="recommendation-label">推奨対策</div>
+        <code>Server</code> / <code>X-Powered-By</code> ヘッダーからバージョン情報を削除。HTML ソースの開発者コメントを本番環境から除去。エラーページでスタックトレースを非表示にする。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 8 -->
+  <div class="issue mid">
+    <div class="issue-head">
+      <span class="severity mid">中</span>
+      <h3>フォーム CSRF 対策・bot 対策</h3>
+    </div>
+    <div class="issue-body">
+      <p>お問い合わせフォームが存在する場合、CSRF トークンの実装・reCAPTCHA 等の bot 対策が必要。予約の主要フローは Coubic に委託されているが、独自フォームの安全性は別途確認が必要。</p>
+      <div class="recommendation security-rec">
+        <div class="recommendation-label">推奨対策</div>
+        独自フォームには CSRF トークンを必ず実装。reCAPTCHA v3 を導入して bot 送信を防止する。
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue 9 -->
+  <div class="issue low">
+    <div class="issue-head">
+      <span class="severity low">低</span>
+      <h3>機密パスの公開確認</h3>
+    </div>
+    <div class="issue-body">
+      <p><code>/.env</code>、<code>/.git</code>、<code>/admin</code>、<code>/wp-admin</code> 等の機密パスが外部から閲覧可能でないか確認が必要。ディレクトリリスティングの無効化も確認すべき。</p>
+      <div class="recommendation security-rec">
+        <div class="recommendation-label">推奨対策</div>
+        Web サーバーの設定で機密パスへのアクセスを 403/404 で遮断。管理画面は IP 制限または VPN 経由に限定する。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     PRIORITY ACTION PLAN
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-header">
+    <div class="icon" style="background:#2d3436;">&#9733;</div>
+    <h2>優先アクションプラン</h2>
+  </div>
+
+  <table class="priority-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>施策</th>
+        <th>カテゴリ</th>
+        <th>深刻度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>Googlebot のクロールブロックを解除</strong> — WAF/CDN 設定を見直し、主要クローラーを許可</td>
+        <td><span class="cat-badge seo">SEO</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>Google Search Console に登録</strong> — インデックス状況を監視、サイトマップを送信</td>
+        <td><span class="cat-badge seo">SEO</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>セキュリティヘッダーを設定</strong> — HSTS, X-Frame-Options, CSP 等を追加</td>
+        <td><span class="cat-badge security">Security</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>sitemap.xml / robots.txt を作成・設置</strong></td>
+        <td><span class="cat-badge seo">SEO</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>構造化データ（JSON-LD HealthClub）を実装</strong></td>
+        <td><span class="cat-badge seo">SEO</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>フローティング CTA「無料体験予約」を実装</strong></td>
+        <td><span class="cat-badge design">Design</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><strong>OGP / Twitter Card を設定</strong></td>
+        <td><span class="cat-badge seo">SEO</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><strong>SSL/TLS 設定を検証</strong> — SSL Labs でテスト実施</td>
+        <td><span class="cat-badge security">Security</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><strong>営業時間・アクセス情報を充実</strong> — Google Maps 埋め込み、道順写真追加</td>
+        <td><span class="cat-badge design">Design</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><strong>料金表を構造化して可読性向上</strong></td>
+        <td><span class="cat-badge design">Design</span></td>
+        <td><span class="severity high">高</span></td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>ブランド名の表記を全チャネルで統一</td>
+        <td><span class="cat-badge design">Design</span></td>
+        <td><span class="severity mid">中</span></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>画像の alt 属性・WebP・lazy loading 最適化</td>
+        <td><span class="cat-badge seo">SEO</span></td>
+        <td><span class="severity mid">中</span></td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>サードパーティスクリプトに SRI を適用</td>
+        <td><span class="cat-badge security">Security</span></td>
+        <td><span class="severity mid">中</span></td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>Cookie セキュリティ属性の確認・修正</td>
+        <td><span class="cat-badge security">Security</span></td>
+        <td><span class="severity mid">中</span></td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>LINE 公式アカウントへの導線を強化</td>
+        <td><span class="cat-badge design">Design</span></td>
+        <td><span class="severity mid">中</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     NOTES
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-header">
+    <div class="icon" style="background:#636e72;">i</div>
+    <h2>分析上の注記</h2>
+  </div>
+  <div class="issue" style="border-left-color:#636e72">
+    <div class="issue-body">
+      <p>本レポートは、サイトが自動クローラー（bot）のアクセスを 403 エラーでブロックしており HTML ソースの直接取得ができなかったため、以下の情報源に基づく<strong>間接的な分析</strong>を含みます。</p>
+      <ul style="margin:.5rem 0 0 1.2rem;font-size:.88rem">
+        <li>Google 検索結果のスニペット情報（タイトル・ディスクリプション）</li>
+        <li>Coubic / STORES 予約の掲載情報</li>
+        <li>ジョブメドレー求人サイトの掲載情報</li>
+        <li>各種パーソナルジム比較サイト（cloud-gym.com 等）</li>
+        <li>Instagram / X（Twitter）公式アカウント情報</li>
+      </ul>
+      <p style="margin-top:.8rem"><strong>より正確な診断には以下のツールでの追加検証を推奨します:</strong></p>
+      <ul style="margin:.3rem 0 0 1.2rem;font-size:.88rem">
+        <li><strong>Google PageSpeed Insights</strong> — パフォーマンス・アクセシビリティスコア</li>
+        <li><strong>Google Search Console</strong> — インデックス状況・クロールエラー</li>
+        <li><strong>SecurityHeaders.com</strong> — HTTP セキュリティヘッダー診断</li>
+        <li><strong>Qualys SSL Labs</strong> — SSL/TLS 設定テスト</li>
+        <li><strong>WAVE / axe DevTools</strong> — アクセシビリティ検証</li>
+        <li><strong>Chrome DevTools Lighthouse</strong> — 総合的な Web 品質監査</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.container -->
+
+<footer class="report-footer">
+  <p>Generated by Claude Code Agent Teams &mdash; SEO Agent + Design Agent + Security Agent (parallel execution)</p>
+  <p>Analysis date: 2026-02-16 &nbsp;|&nbsp; Target: resist-official.com/kitaurawa</p>
+</footer>
+
+</body>
+</html>
